@@ -1,18 +1,18 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-const Form = () => {
+const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm }) => {
     // For toggling between text and password 
-    const [showPassword, setShowPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
     const firstNameRef = useRef(null) // setting them to empy by default
     const lastNameRef = useRef(null) // setting them to empy by default
     const emailRef = useRef(null) // setting them to empy by default
     const passwordRef = useRef(null) // setting them to empy by default
     const confirmPasswordRef = useRef(null) // setting them to empy by default
 
-    const handlePassword = () => {
-        setShowPassword(!showPassword);
-    };
+    // const handlePassword = () => {
+    //     setShowPassword(!showPassword);
+    // };
     const handleRegistration = (event) => {
         event.preventDefault()
         const registerUser = {
@@ -54,7 +54,10 @@ const Form = () => {
                     <div className='flex flex-col mt-2'>
                         <label htmlFor="confirmPassword" className='text-[12px] font-style font-medium'>Confirm Password</label>
                         <div className='flex justify-end items-center'>
-                            <input type={showPassword ? 'text' : 'password'} name="confirmPassword" ref={confirmPasswordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
+                            <input type={showConfirmPassword ? 'text' : 'password'} name="confirmPassword" ref={confirmPasswordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
+                            <button onClick={handleConfirm} className='absolute'>
+                                {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                            </button>
                         </div>
                     </div>
                     <div className='text-center mt-4'>
