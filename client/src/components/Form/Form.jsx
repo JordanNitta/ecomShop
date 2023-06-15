@@ -55,9 +55,6 @@ const Form = () => {
                         <label htmlFor="confirmPassword" className='text-[12px] font-style font-medium'>Confirm Password</label>
                         <div className='flex justify-end items-center'>
                             <input type={showPassword ? 'text' : 'password'} name="confirmPassword" ref={confirmPasswordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
-                            <button onClick={handlePassword} className='absolute'>
-                                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-                            </button>
                         </div>
                     </div>
                     <div className='text-center mt-4'>
