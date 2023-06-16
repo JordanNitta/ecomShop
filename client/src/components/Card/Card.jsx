@@ -1,26 +1,36 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 const Card = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const { data } = await axios.get('/api/getall/products');
-            setProducts(data)
-        }
-        fetchProducts();
-    }, [])
+            const response = await axios.get('http://localhost:8000/api/all/products');
+            setProducts(response.data);
+        };
+        fetchProducts()
+    }, []);
+
     return (
-        <div class="w-[60%] bg-white border rounded-md shadow">
-            <div href="#" className='p-5'>
-                <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt=""/>
-            </div>
-            <div class="p-5">
-                <h5 class="mb-2 text-[14px] font-semibold  text-black">Noteworthy technology acquisitions 2021</h5>
-                <h5 class="text-[14px] font-semibold  text-black">$Price</h5>
-            </div>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
+            {products.map((product) => {
+                const { _id, name, image, price, brand} = product;
+                return (
+                    <Link key={_id} className='pointer  bg-white'>
+                        <div href="#" className='p-5'>
+                            <img className="rounded-md" src={image} />
+                        </div>
+                        <div className="p-5">
+                            <h5 className="mb-2 text-[14px] font-semibold text-gray-500">{brand}</h5>
+                            <h5 className="mb-2 text-[14px] font-semibold text-black">{name}</h5>
+                            <h5 className="text-[14px] font-semibold text-black">${price}</h5>
+                        </div>
+                    </Link>
+                );
+            })}
         </div>
-    )
+    );
 }
 
-export default Card
+    export default Card

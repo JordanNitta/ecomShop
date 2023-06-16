@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const ProductSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     brand: {
         type: String,
@@ -33,6 +33,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
 });
 
 // collection name('' , schema name)

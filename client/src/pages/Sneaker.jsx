@@ -22,7 +22,7 @@ const Sneaker = () => {
                         <h1 className="uppercase text-[14px] font-bold">Results</h1>
                         <h1 className="uppercase text-[14px] font-bold">Sort By Relevance</h1>
                     </div>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className='mt-5'>
                         <Card />
                     </div>
                 </div>
