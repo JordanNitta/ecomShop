@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRef } from 'react'
+import axios from 'axios'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm }) => {
     // For toggling between text and password 
@@ -22,7 +23,11 @@ const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm
             password: passwordRef.current.value, //current.value is used to acces current value
             confirmPasswordRef: confirmPasswordRef.current.value //current.value is used to acces current value
         }
-        console.log(registerUser)
+        axios.post('http://localhost:8000/api/user/create', registerUser) 
+            .then((res) => {
+                localStorage.setItem('user', JSON.stringify(res.data.user))
+                localStorage.setItem('token', JSON.stringify(res.data.token))
+            })
     }
 
     return (
