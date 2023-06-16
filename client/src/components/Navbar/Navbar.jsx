@@ -5,6 +5,7 @@ import Searchbar from './Searchbar'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false)
+    const [hover, setHover] = useState(false)
     const navLinks = [
         { title: 'Sneakers', URL: '/sneakers' },
         { title: 'FC Apparel', URL: '/apparel' },
@@ -15,11 +16,15 @@ const Navbar = () => {
     const handleMenu = () => {
         setShowMenu(!showMenu)
     }
-    
+
+    localStorage.getItem('user')
+
+
+
     return (
         <>
             <div className='h-[76px] border-b-[1px] flex justify-between px-4'>
-                <div className='flex items-center justify-between'>
+                <div className='flex items-center justify-between '>
                     <Link to='/'>
                         <img src={Logo} alt="" className='cursor-pointer w-[100px] lg:w-[160px]' />
                     </Link>

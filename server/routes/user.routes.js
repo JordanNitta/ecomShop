@@ -1,5 +1,5 @@
-const UserController = require('../controllers/user.controller')
+const { registerUser } = require('../controllers/user.controller')
 
 module.exports = app => {
-    app.get('/api/user/create', UserController.handleCreate)
+    app.post('/api/user/create', registerUser)
 }
