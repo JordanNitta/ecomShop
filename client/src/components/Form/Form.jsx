@@ -23,11 +23,11 @@ const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm
             password: passwordRef.current.value, //current.value is used to acces current value
             confirmPasswordRef: confirmPasswordRef.current.value //current.value is used to acces current value
         }
-        axios.post('http://localhost:8000/api/user/create', registerUser) 
-            .then((res) => {
-                localStorage.setItem('user', JSON.stringify(res.data.user))
-                localStorage.setItem('token', JSON.stringify(res.data.token))
-            })
+        // axios.post('http://localhost:8000/api/user/create', registerUser) 
+        //     .then((res) => {
+        //         localStorage.setItem('user', JSON.stringify(res.data.user))
+        //         localStorage.setItem('token', JSON.stringify(res.data.token))
+        //     })
     }
 
     return (

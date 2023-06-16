@@ -13,6 +13,7 @@ const JWT_SECRET  = process.env.JWT_SECRET
  * a secret key (`JWT_SECRET`) and contains the `id` of the user. The token will expire after one day
  * (`{expiresIn: '1d'}`).
  */
+
 const generateToken = (id) => {
     // sign the jwt signature at the end 
     return jwt.sign({id}, JWT_SECRET, {expiresIn: '1d'})

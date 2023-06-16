@@ -12,4 +12,8 @@ app.use(express.json(), cookies(), express.urlencoded({ extended: true }));
 // Route section
 const UserRoutes = require("./routes/user.routes")
 UserRoutes(app);
+
+const ProductRoutes = require('./routes/products.routes')
+ProductRoutes(app)
+
 app.listen(port, () => console.log(`Listening on port: ${port}`));

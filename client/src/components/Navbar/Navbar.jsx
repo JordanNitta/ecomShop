@@ -23,7 +23,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='h-[76px] border-b-[1px] flex justify-between px-4'>
+            <div className='h-[76px] bg-white border-b-[1px] flex justify-between px-4'>
                 <div className='flex items-center justify-between '>
                     <Link to='/'>
                         <img src={Logo} alt="" className='cursor-pointer w-[100px] lg:w-[160px]' />

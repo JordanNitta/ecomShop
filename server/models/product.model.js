@@ -13,7 +13,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    category: {
+    model: {
         type: String,
         required: true
     },
@@ -22,16 +22,17 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     size: {
-        type: Number,
+        type: [Number],
         required: true
     },
     price: {
         type: Number,
         required: true
     },
-    
-    timestamps: true
-
+    color: {
+        type: String,
+        required: true,
+    },
 });
 
 // collection name('' , schema name)
