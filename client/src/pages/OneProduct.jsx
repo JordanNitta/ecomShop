@@ -37,7 +37,7 @@ const OneProduct = () => {
                     <h1>{product.model}</h1>
                     <div>
                         <h1 className='text-[16px] upper font-semibold'>Select a Size</h1>
-                        {/* {product && product.size ? (
+                        {product && product.size ? (
                             <div className='grid grid-cols-5 gap-4 mt-3'>
                                 {product.size.map((size, index) => (
                                     <button
@@ -51,7 +51,7 @@ const OneProduct = () => {
                             </div>
                         ) : (
                             ''
-                        )} */}
+                        )}
                         <SizeAccordian product={product}/>
                     </div>
                     <div className='flex flex-col items-start'>
