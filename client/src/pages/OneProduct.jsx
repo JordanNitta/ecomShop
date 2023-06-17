@@ -23,7 +23,7 @@ const OneProduct = () => {
     }, [id]);
 
     return (
-        <Container className='bg-white '>
+        <Container className='bg-white'>
             <div className='flex flex-col justify-center items-center sm:justify-center lg:flex-row lg:justify-between lg:items-center'>
                 <div className=''>
                     <h1 className='text-[16px] font-500 text-gray-500 lg:hidden'>{product.brand}</h1>
