@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        style: ["Helvetica Neue", "Helvetica", "Arial"]
+        style: ["Helvetica Neue", "Helvetica", "Arial", 'sans-serif']
       },
       fontWeight: {
         thin: '100',

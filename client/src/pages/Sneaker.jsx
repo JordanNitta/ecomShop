@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {} from 'react';
 import Header from '../components/Wrapper/Header';
 import Container from '../components/Wrapper/Container';
 import Accordian from '../components/Accordian/Accordian';
 import Card from '../components/Card/Card';
 const Sneaker = () => {
+    
     return (
         <>
             <Header>
