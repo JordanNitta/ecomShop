@@ -23,22 +23,22 @@ const OneProduct = ({selectedSize, handleBorder}) => {
     }, [id]);
 
     return (
-        <Container className='bg-white'>
+        <div className='bg-white md:p-0 lg:px-[150px] xl:px-[200px]'>
             <div className='flex flex-col justify-center items-center sm:justify-center lg:flex-row lg:justify-between lg:items-center'>
                 <div className=''>
                     <h1 className='text-[16px] font-500 text-gray-500 lg:hidden'>{product.brand}</h1>
                     <h1 className="text-[30px] font-semibold text-black lg:hidden">{product.name}</h1>
                 </div>
-                <img src={product.image} alt={product.name} width={600} />
+                
+                <img src={product.image} alt={product.name} width={500}/>
                 {/* Make sure to take off width full */}
-                <div className='ml-[50px] space-y-5 w-full'>
+                <div className='lg:ml-[50px] space-y-5 w-full'>
                     <h1 className='hidden lg:block lg:text-[16px] lg:font-500 lg:text-gray-500'>{product.brand}</h1>
                     <h1 className="hidden lg:block lg:mb-2 lg:text-[30px] lg:font-semibold lg:text-black">{product.name}</h1>
-                    <h1>{product.model}</h1>
-                    <div>
-                        <h1 className='text-[16px] upper font-semibold'>Select a Size</h1>
+                    <h1 className='text-[16px] upper font-semibold'>Select a Size</h1>
+                    <div className=''>
                         {product && product.size ? (
-                            <div className='hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:mt-3 '>
+                            <div className='hidden lg:grid lg:grid-cols-5 lg:gap-3 lg:mt-3 '>
                                 {product.size.map((size, index) => (
                                     <button
                                         className={selectedSize === size ? 'font-style text-[14px] font-semibold border-[1px] border-black p-3' : 'font-style text-[14px] font-semibold border-[1px] border-gray-200 p-3'}
@@ -54,13 +54,16 @@ const OneProduct = ({selectedSize, handleBorder}) => {
                         )}
                         <SizeAccordian product={product}/>
                     </div>
-                    <div className='flex flex-col items-start'>
-                        <h1>Buy New</h1>
-                        <Button product={product} />
+                    <div className='flex lg:flex-col item-center justify-center lg:items-start'>
+                        <h1 className='hidden lg:block'>Buy New</h1>
+                        <Button product={product}/>
+                    </div>                   
+                    <div>
+                        
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
     )
 }
 
