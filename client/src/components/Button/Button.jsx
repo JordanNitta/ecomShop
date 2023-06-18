@@ -12,6 +12,7 @@ const Button = ( {product} ) => {
             w-[80%]
             text-[16px] font-500 text-white' >
             ${product.price}
+            
         </button>
     )
 }
