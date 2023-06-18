@@ -53,12 +53,14 @@ const OneProduct = ({selectedSize, handleBorder}) => {
                         )}
                         <SizeAccordian product={product}/>
                     </div>
-                    <div className='flex lg:flex-col item-center justify-center lg:items-start'>
+                    <div className='flex flex-col gap-3 items-center lg:flex-col justify-center lg:items-start '>
                         <h1 className='hidden lg:block'>Buy New</h1>
                         <Button product={product}/>
+                        <p className='w-[80%] text-[12px] text-[#333] font-normal md:w-[50%] lg:w-full'>Shopping from the United States. Applicable costs included with no addition charge upon delivery</p>
                     </div>                   
-                    <div>
-                        
+                    <div className='flex flex-col ml-'>
+                        <h1 className='upper'>About This Product</h1>
+                        <p className='text-[12px] text-[#333] font-normal'>{product.description}</p>
                     </div>
                 </div>
             </div>
