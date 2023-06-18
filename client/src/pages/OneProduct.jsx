@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import Container from '../components/Wrapper/Container'
 import Button from '../components/Button/Button'
 import SizeAccordian from '../components/Accordian/SizeAccordian'
-const OneProduct = () => {
+const OneProduct = ({selectedSize, handleBorder}) => {
     const { id } = useParams()
     // const [selectedSize, setSelectedSize] = useState(null)
 
@@ -38,7 +38,7 @@ const OneProduct = () => {
                     <div>
                         <h1 className='text-[16px] upper font-semibold'>Select a Size</h1>
                         {product && product.size ? (
-                            <div className='grid grid-cols-5 gap-4 mt-3'>
+                            <div className='hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:mt-3 '>
                                 {product.size.map((size, index) => (
                                     <button
                                         className={selectedSize === size ? 'font-style text-[14px] font-semibold border-[1px] border-black p-3' : 'font-style text-[14px] font-semibold border-[1px] border-gray-200 p-3'}

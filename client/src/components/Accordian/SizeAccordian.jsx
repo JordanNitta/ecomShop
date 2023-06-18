@@ -5,6 +5,7 @@ const SizeAccordian = ({ product }) => {
     const [selectedSize, setSelectedSize] = useState(null)
     const [openSizes, setOpenSizes] = useState(false)
     const outsideClick = useRef(null)
+
     const handleBorder = (size) => {
         setSelectedSize(size);
     }
@@ -45,17 +46,18 @@ const SizeAccordian = ({ product }) => {
                 ''
             )} */}
 
-            <div className='w-full'>
+            <div className='w-full lg:hidden'>
                 <button
                     
                     className='font-style text-[14px] font-semibold border-[1px] border-black p-3 w-[70%] h-[35px]'
                     onClick={handleOpenSizes} >
+                    
                 </button>
             </div>
             {openSizes ? (
                 <motion.div
                     // ref={outsideClick}
-                    className='fixed bottom-0 w-full h-[550px] right-0 left-0 bg-white z-50'
+                    className='fixed bottom-0 w-full h-[550px] right-0 left-0 bg-white lg:hidden z-50'
                     initial={{ opacity: 1, y: 400 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 400 }}
