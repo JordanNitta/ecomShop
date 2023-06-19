@@ -8,8 +8,7 @@ const Button = ( {product} ) => {
             button-style 
             h-[40px] 
             px-[70px] 
-            md:w-[50%]
-            w-[80%]
+            w-full
             text-[16px] font-500 text-white' >
             ${product.price}
             

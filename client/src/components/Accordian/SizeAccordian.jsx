@@ -46,10 +46,10 @@ const SizeAccordian = ({ product }) => {
                 ''
             )} */}
 
-            <div className='lg:hidden flex items-center justify-center'>
+            <div className='lg:hidden flex items-center justify-center '>
                 <button
-
-                    className='flex justify-between items-center font-style text-[14px] font-semibold border-[1px] border-black p-3 w-[80%] md:w-[50%] h-[40px]'
+                    // w-[80%]
+                    className='flex justify-between items-center font-style text-[14px] font-semibold border-[1px] border-black p-3 w-full h-[40px]'
                     onClick={handleOpenSizes} >
                         <span className='uppercase font-semibold font-500'>Size </span>
                         
