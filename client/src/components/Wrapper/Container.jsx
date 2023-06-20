@@ -1,9 +1,13 @@
 import tw from "tailwind-styled-components"
 
 const Container = tw.div`
-    flex
+    p-3
     w-full
-    px-[200px]
+    lg:px-[200px]
+    lg:flex-row
+    md:p-3 
+    md:flex-col
+
 `
 
 
