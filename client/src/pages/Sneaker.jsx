@@ -1,10 +1,23 @@
-import React, {} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../components/Wrapper/Header';
 import Container from '../components/Wrapper/Container';
 import Accordian from '../components/Accordian/Accordian';
 import Card from '../components/Card/Card';
 const Sneaker = () => {
-    
+    const [products, setProducts] = useState([])
+    const [totalProducts, setTotalProducts] = useState(0);
+    const { id } = useParams
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const response = await axios.get('http://localhost:8000/api/all/products');
+            setProducts(response.data);
+            setTotalProducts(response.data.length)
+        };
+        fetchProducts()
+    }, []);
+
     return (
         <>
             <Header>
@@ -13,18 +26,18 @@ const Sneaker = () => {
                     <p className='mt-4 text-[14px] font-light text-gray-500'>The vault goes deep at Flight Club. Shop for new releases from must-have names like Air Jordan, Nike, New Balance and Yeezy, along with the latest collaborations from brands like Vans, Reebok, Converse, ASICS, and more. </p>
                 </div>
             </Header>
-            <Container>
+            <Container className=''>
                 <div className='flex flex-col w-[20%]'>
                     <h3>Filter</h3>
                     <Accordian />
                 </div>
                 <div className="w-full">
                     <div className='flex justify-between'>
-                        <h1 className="uppercase text-[14px] font-bold">Results</h1>
+                        <h1 className="uppercase text-[14px] font-bold">Results {totalProducts}</h1>
                         <h1 className="uppercase text-[14px] font-bold">Sort By Relevance</h1>
                     </div>
-                    <div className='mt-5'>
-                        <Card />
+                    <div className='mt-5 md:w-full'>
+                        <Card products={products} id={id}/>
                     </div>
                 </div>
             </Container>

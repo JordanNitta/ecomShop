@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
+import { motion } from 'framer-motion'
 const Searchbar = () => {
     const [openSearch, setOpenSearch] = useState(false)
 
@@ -7,9 +8,10 @@ const Searchbar = () => {
         setOpenSearch(!openSearch)
     }
     return (
-        <div className='h-full flex items-center ' style={{flex: '1, 1, 45%'}}>
+        <div className='flex items-center'>
             <span className='hidden lg:block relative left-7'><AiOutlineSearch size={20} color='grey'/></span>
-            <input type="text" className='hidden lg:block lg:text-[16px] sm:py-0 lg:px-30 lg:pl-10 lg:pr-10 lg:border-2 lg:leading-8 focus:outline-none' placeholder='Search'/>
+            <input type="text" className='hidden lg:block lg:text-[16px] sm:py-0 lg:px-30 lg:pl-10 lg:pr-10 lg:border-2 lg:leading-8 focus:outline-none' placeholder='Search' onClick={handleSearch}/>
+            
         </div>
     )
 }

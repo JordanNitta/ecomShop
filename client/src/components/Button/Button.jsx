@@ -9,6 +9,7 @@ const Button = ( {product} ) => {
             h-[40px] 
             px-[70px] 
             w-full
+            lg:w-[40%]
             text-[16px] font-500 text-white' >
             ${product.price}
             

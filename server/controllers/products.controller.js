@@ -7,9 +7,9 @@ const getProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
     const product = await Product.findById(req.params.id)
-    if(product) {
+    if (product) {
         return res.json(product)
-    } else{
+    } else {
         res.status(404)
         // throw new Error('Product not found')
     }
