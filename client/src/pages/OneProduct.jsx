@@ -59,7 +59,7 @@ const OneProduct = ({selectedSize, handleBorder}) => {
                             <SizeAccordian product={product} />
                         </div>
                         <h1 className='hidden lg:block'>Buy New</h1>
-                        <Button product={product}/>
+                        <Button product={product}>${product.price}</Button>
                         <p className='text-[12px] text-[#333] font-normal lg:w-full'>Shopping from the United States. Applicable costs included with no addition charge upon delivery</p>
                         <div className='py-[30px] w-full'>
                             <h1>About Products</h1>

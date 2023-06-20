@@ -5,10 +5,15 @@ import Header from '../components/Wrapper/Header';
 import Container from '../components/Wrapper/Container';
 import Accordian from '../components/Accordian/Accordian';
 import Card from '../components/Card/Card';
+import Button from '../components/Button/Button';
+import FilterButton from '../components/Button/FilterButton';
+import FilterMenu from '../components/FilterMenu/FilterMenu';
 const Sneaker = () => {
+    const [filterPopup, setFilterPopup] = useState(false)
     const [products, setProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0);
     const { id } = useParams
+
     useEffect(() => {
         const fetchProducts = async () => {
             const response = await axios.get('http://localhost:8000/api/all/products');
@@ -18,6 +23,10 @@ const Sneaker = () => {
         fetchProducts()
     }, []);
 
+    const handleFilterPopup = () => {
+        setFilterPopup(!filterPopup)
+        console.log('hi')
+    }
     return (
         <>
             <Header>
@@ -27,14 +36,16 @@ const Sneaker = () => {
                 </div>
             </Header>
             <Container className=''>
-                <div className='flex flex-col w-[20%]'>
+                <div className='flex flex-col lg:w-[20%]'>
                     <h3>Filter</h3>
+                    <FilterButton openMenu={handleFilterPopup}/> 
+                    {filterPopup ? <FilterMenu products={products} /> : ''}
                     <Accordian />
                 </div>
                 <div className="w-full">
                     <div className='flex justify-between'>
                         <h1 className="uppercase text-[14px] font-bold">Results {totalProducts}</h1>
-                        <h1 className="uppercase text-[14px] font-bold">Sort By Relevance</h1>
+                        <h1 className="hidden lg:block lg:uppercase lg:text-[14px] lg:font-bold">Sort By Relevance</h1>
                     </div>
                     <div className='mt-5 md:w-full'>
                         <Card products={products} id={id}/>

@@ -12,7 +12,6 @@ const Button = ( {product} ) => {
             lg:w-[40%]
             text-[16px] font-500 text-white' >
             ${product.price}
-            
         </button>
     )
 }
