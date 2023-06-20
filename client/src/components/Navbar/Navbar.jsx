@@ -25,10 +25,10 @@ const Navbar = () => {
         <>
             <div className='h-[76px] bg-white flex justify-between px-4'>
                 <div className='flex items-center justify-between '>
+                    <Searchbar />
                     <Link to='/'>
                         <img src={Logo} alt="" className='cursor-pointer w-[100px] lg:w-[160px]' />
                     </Link>
-                    <Searchbar />
                 </div>
                 <div className='hidden lg:flex lg:justify-end lg:items-center'>
                     {navLinks.map((link, index) => (
@@ -44,6 +44,34 @@ const Navbar = () => {
                 </div>
             </div>
         </>
+        // <>
+        //     <div className='h-[76px] bg-white flex justify-between px-4'>
+        //         <div className='flex items-center w-[50%]'>
+        //             {/* <Link to='/'>
+        //                 <img src={Logo} alt="" className='cursor-pointer w-[100px] lg:w-[160px]' />
+        //             </Link> */}
+        //             <Searchbar />
+        //         </div>
+        //         <div className='flex items-center '>
+        //         <Link to='/'>
+        //                 <img src={Logo} alt="" className='cursor-pointer w-[100px] lg:w-[160px]' />
+        //             </Link>
+        //         </div>
+        //         <div className='hidden lg:flex lg:justify-end lg:items-center lg:w-[50%]'>
+        //             {navLinks.map((link, index) => (
+        //                 <ul key={index} className='lg:mx-3'>
+        //                     <li>
+        //                         <Link to={link.URL}>{link.title}</Link>
+        //                     </li>
+        //                 </ul>
+        //             ))}
+        //         </div>
+        //         <div onClick={handleMenu} className='lg:hidden my-auto'>
+        //             {showMenu ? <AiOutlineMenu size={30} className='cursor-pointer text-main ml-1 lg:hidden' /> : <AiOutlineClose size={30} className='cursor-pointer text-main ml-1 lg:hidden' />}
+        //         </div>
+        //     </div>
+        // </>
+
 
     )
 }
