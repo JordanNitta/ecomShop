@@ -33,7 +33,6 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
 });
 
 // collection name('' , schema name)

@@ -8,13 +8,12 @@ const ShippingAccordian = () => {
 
     return (
     <>
-        <div className='lg:hidden flex flex-col '>
+        <div className='flex flex-col '>
             <button
             // w-[80%]
             className='flex justify-between items-center font-style text-[14px] font-semibold w-full  h-[40px]'
             onClick={handleOpen} >
                 <span className='uppercase font-semibold font-500'>Shipping and returns </span>
-                
                 <span>
                     {open ? <AiOutlineUp size={18}/> : <AiOutlineDown size={18}/>}
                 </span>

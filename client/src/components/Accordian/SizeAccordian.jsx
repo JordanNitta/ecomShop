@@ -17,13 +17,14 @@ const SizeAccordian = ({ product }) => {
     const handleClickOutside = (event) => {
         if (outsideClick.current && !outsideClick.current.contains(event.target)) {
             setOpenSizes(false);
+            
         }
     };
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
         return () => {
-            document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('click', handleOpenSizes);
         };
     }, []);
 
@@ -49,6 +50,7 @@ const SizeAccordian = ({ product }) => {
             <div className='lg:hidden flex items-center justify-center '>
                 <button
                     // w-[80%]
+                    ref={outsideClick}
                     className='flex justify-between items-center font-style text-[14px] font-semibold border-[1px] border-black p-3 w-full h-[40px]'
                     onClick={handleOpenSizes} >
                         <span className='uppercase font-semibold font-500'>Size </span>
@@ -61,7 +63,7 @@ const SizeAccordian = ({ product }) => {
             </div>
             {openSizes ? (
                 <motion.div
-                    // ref={outsideClick}
+                    
                     className='fixed bottom-0 w-full h-[600px] right-0 left-0 bg-white lg:hidden z-50'
                     initial={{ opacity: 1, y: 400 }}
                     animate={{ opacity: 1, y: 0 }}
