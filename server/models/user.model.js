@@ -43,7 +43,7 @@ UserSchema.virtual('confirmPassword')
 // Next represent the next step to do 
 // If you write it as arrow function it will take out the keyword this
 UserSchema.pre("validate", function(next) {
-    if (this.password !== this._confirmPassword) {
+    if (this.password !== this.confirmPassword) {
         // This will make it not valid if it doesnt match
         this.invalidate("confirmPassword", "Password must match confirm password");
     }

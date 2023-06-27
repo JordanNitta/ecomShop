@@ -14,27 +14,31 @@ const Form = () => {
     const passwordRef = useRef(null) // setting them to empy by default
     const confirmPasswordRef = useRef(null) // setting them to empy by default
     const [error, setError] = useState({})
-    const handlePasswordToggle = () => {
+    
+    const handlePasswordToggle = (e) => {
+        e.preventDefault()
         setShowPassword(!showPassword);
     };
-    const handleConfirmToggle = () => {
+    const handleConfirmToggle = (e) => {
+        e.preventDefault()
         setShowConfirmPassword(!showConfirmPassword);
     };
 
-    const handleRegistration = (event) => {
-        event.preventDefault()
+    const handleRegistration = (e) => {
+        e.preventDefault()
         const registerUser = {
             firstName: firstNameRef.current.value, //current.value is used to acces current value
             lastName: lastNameRef.current.value, //current.value is used to acces current value
             email: emailRef.current.value, //current.value is used to acces current value
             password: passwordRef.current.value, //current.value is used to acces current value
-            confirmPasswordRef: confirmPasswordRef.current.value //current.value is used to acces current value
+            confirmPassword: confirmPasswordRef.current.value //current.value is used to acces current value
         }
+        console.log(registerUser)
         axios.post('http://localhost:8000/api/user/create', registerUser) 
             .then((res) => {
+                console.log(registerUser)
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', JSON.stringify(res.data.token))
-                console.log(res.data)
                 navigate('/')
             })
             .catch(err => {
