@@ -1,19 +1,26 @@
 import React from 'react'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm }) => {
+const Form = () => {
+    const navigate = useNavigate()
     // For toggling between text and password 
-    // const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const firstNameRef = useRef(null) // setting them to empy by default
     const lastNameRef = useRef(null) // setting them to empy by default
     const emailRef = useRef(null) // setting them to empy by default
     const passwordRef = useRef(null) // setting them to empy by default
     const confirmPasswordRef = useRef(null) // setting them to empy by default
+    const [error, setError] = useState({})
+    const handlePasswordToggle = () => {
+        setShowPassword(!showPassword);
+    };
+    const handleConfirmToggle = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
 
-    // const handlePassword = () => {
-    //     setShowPassword(!showPassword);
-    // };
     const handleRegistration = (event) => {
         event.preventDefault()
         const registerUser = {
@@ -23,11 +30,18 @@ const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm
             password: passwordRef.current.value, //current.value is used to acces current value
             confirmPasswordRef: confirmPasswordRef.current.value //current.value is used to acces current value
         }
-        axios.post('http://localhost:8000/api/user/create', registerUser, {withCredentials: true}) 
+        axios.post('http://localhost:8000/api/user/create', registerUser) 
             .then((res) => {
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', JSON.stringify(res.data.token))
-        })
+                console.log(res.data)
+                navigate('/')
+            })
+            .catch(err => {
+                setError(err.response.data)
+                console.log(err.response.data)
+                console.log(setError, 'Error message')
+            })
     }
 
     return (
@@ -49,9 +63,10 @@ const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm
                     </div>
                     <div className='flex flex-col mt-2'>
                         <label htmlFor="password" className='text-[12px] font-style font-medium'>password</label>
+                        
                         <div className='flex justify-end items-center'>
                             <input type={showPassword ? 'text' : 'password'} name="password" ref={passwordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
-                            <button onClick={handlePassword} className='absolute'>
+                            <button onClick={handlePasswordToggle} className='absolute'>
                                 {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>
                         </div>
@@ -60,7 +75,7 @@ const Form = ({ showPassword, handlePassword, showConfirmPassword, handleConfirm
                         <label htmlFor="confirmPassword" className='text-[12px] font-style font-medium'>Confirm Password</label>
                         <div className='flex justify-end items-center'>
                             <input type={showConfirmPassword ? 'text' : 'password'} name="confirmPassword" ref={confirmPasswordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
-                            <button onClick={handleConfirm} className='absolute'>
+                            <button onClick={handleConfirmToggle} className='absolute'>
                                 {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>
                         </div>

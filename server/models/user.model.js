@@ -30,17 +30,24 @@ const UserSchema = new mongoose.Schema(
 );
 // set confirmPassword as a virtual field so it doesn't get stored in database
 UserSchema.virtual('confirmPassword')
+    .get(function(){
+        return this._confirmPassword
+    })
+    .set(function(value){
+        this._confirmPassword = value
+        
+    })
 
-// Pre means before we store the user to database it allows us to perfrom logic
+// Pre means before we store the user to database itallows us to perfrom logic
 // Before the validation take place
 // Next represent the next step to do 
 // If you write it as arrow function it will take out the keyword this
 UserSchema.pre("validate", function(next) {
-    if (this.password !== this.confirmPassword) {
+    if (this.password !== this._confirmPassword) {
         // This will make it not valid if it doesnt match
         this.invalidate("confirmPassword", "Password must match confirm password");
     }
-    // If it doesnt hit the if it will do the next step
+    // If is passes then it will move onto the next step
     next();
 });
 

@@ -4,7 +4,7 @@ import { AiOutlineClose, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 const SizeAccordian = ({ product }) => {
     const [selectedSize, setSelectedSize] = useState(null)
     const [openSizes, setOpenSizes] = useState(false)
-    const outsideClick = useRef(null)
+    // const outsideClick = useRef(null)
 
     const handleBorder = (size) => {
         setSelectedSize(size);
@@ -14,19 +14,19 @@ const SizeAccordian = ({ product }) => {
         setOpenSizes(!openSizes)
     }
 
-    const handleClickOutside = (event) => {
-        if (outsideClick.current && !outsideClick.current.contains(event.target)) {
-            setOpenSizes(false);
+    // const handleClickOutside = (event) => {
+    //     if (outsideClick.current && !outsideClick.current.contains(event.target)) {
+    //         setOpenSizes(false);
             
-        }
-    };
+    //     }
+    // };
 
-    useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleOpenSizes);
-        };
-    }, []);
+    // useEffect(() => {
+    //     document.addEventListener('click', handleClickOutside);
+    //     return () => {
+    //         document.removeEventListener('click', handleOpenSizes);
+    //     };
+    // }, []);
 
 
     return (
@@ -50,7 +50,7 @@ const SizeAccordian = ({ product }) => {
             <div className='lg:hidden flex items-center justify-center '>
                 <button
                     // w-[80%]
-                    ref={outsideClick}
+                    // ref={outsideClick}
                     className='flex justify-between items-center font-style text-[14px] font-semibold border-[1px] border-black p-3 w-full h-[40px]'
                     onClick={handleOpenSizes} >
                         <span className='uppercase font-semibold font-500'>Size </span>
