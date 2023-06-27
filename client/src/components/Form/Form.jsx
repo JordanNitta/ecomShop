@@ -33,10 +33,10 @@ const Form = () => {
             password: passwordRef.current.value, //current.value is used to acces current value
             confirmPassword: confirmPasswordRef.current.value //current.value is used to acces current value
         }
-        console.log(registerUser)
+        // console.log(registerUser)
         axios.post('http://localhost:8000/api/user/create', registerUser) 
             .then((res) => {
-                console.log(registerUser)
+                // console.log(registerUser)
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', JSON.stringify(res.data.token))
                 navigate('/')

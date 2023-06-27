@@ -50,7 +50,7 @@ const login = async(req, res) => {
 
     }
 }   
- 
+
 const handleGetAllUsers = async (req, res) => {
     User.find()
         .then(response => {
