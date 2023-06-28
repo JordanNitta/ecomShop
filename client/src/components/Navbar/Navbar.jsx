@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 import Logo from '../../assets/Img/Logo.png'
 import Searchbar from './Searchbar'
@@ -17,9 +17,9 @@ const Navbar = () => {
         setShowMenu(!showMenu)
     }
 
-    localStorage.getItem('user')
+    useEffect(() => {
 
-
+    })
 
     return (
         <>

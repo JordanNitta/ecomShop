@@ -5,10 +5,12 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const handlePassword = () => {
+    const handlePassword = (e) => {
+        e.preventDefault()
         setShowPassword(!showPassword);
     };
-    const handleConfirm = () => {
+    const handleConfirm = (e) => {
+        e.preventDefault()
         setShowConfirmPassword(!showConfirmPassword);
     };
     return (

@@ -1,13 +1,13 @@
 import React from 'react'
 import { useRef, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-const Form = () => {
+const Form = ({showPassword, handlePassword, showConfirmPassword, handleConfirm}) => {
     const navigate = useNavigate()
     // For toggling between text and password 
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
+    // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const firstNameRef = useRef(null) // setting them to empy by default
     const lastNameRef = useRef(null) // setting them to empy by default
     const emailRef = useRef(null) // setting them to empy by default
@@ -15,14 +15,14 @@ const Form = () => {
     const confirmPasswordRef = useRef(null) // setting them to empy by default
     const [error, setError] = useState({})
     
-    const handlePasswordToggle = (e) => {
-        e.preventDefault()
-        setShowPassword(!showPassword);
-    };
-    const handleConfirmToggle = (e) => {
-        e.preventDefault()
-        setShowConfirmPassword(!showConfirmPassword);
-    };
+    // const handlePasswordToggle = (e) => {
+    //     e.preventDefault()
+    //     setShowPassword(!showPassword);
+    // };
+    // const handleConfirmToggle = (e) => {
+    //     e.preventDefault()
+    //     setShowConfirmPassword(!showConfirmPassword);
+    // };
 
     const handleRegistration = (e) => {
         e.preventDefault()
@@ -70,7 +70,7 @@ const Form = () => {
                         
                         <div className='flex justify-end items-center'>
                             <input type={showPassword ? 'text' : 'password'} name="password" ref={passwordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
-                            <button onClick={handlePasswordToggle} className='absolute'>
+                            <button onClick={handlePassword} className='absolute'>
                                 {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>
                         </div>
@@ -79,7 +79,7 @@ const Form = () => {
                         <label htmlFor="confirmPassword" className='text-[12px] font-style font-medium'>Confirm Password</label>
                         <div className='flex justify-end items-center'>
                             <input type={showConfirmPassword ? 'text' : 'password'} name="confirmPassword" ref={confirmPasswordRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium w-full' />
-                            <button onClick={handleConfirmToggle} className='absolute'>
+                            <button onClick={handleConfirm} className='absolute'>
                                 {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>
                         </div>
@@ -87,7 +87,15 @@ const Form = () => {
                     <div className='text-center mt-4'>
                         <button type='submit' className='uppercase mt-2 w-full h-[50px] font-style font-medium' style={{ backgroundColor: 'rgb(231, 231, 231)' }}>Create Account</button>
                     </div>
+                    <div className='text-center mt-4 flex justify-center items-center'>
+                        <span className='w-[30%] border-[1px] border-r-[white] border-b-none h-[1px] mr-2'></span>
+                            <p className='uppercase text-[12px] w-[40%]' style={{color: '#818181'}}>Already Have an Account</p> 
+                        <span className='w-[30%] border-[1px] border-r-[white] border-b-none h-[1px]  ml-2 '></span>
+                    </div>
                 </form>
+                <div className='text-center mt-4'>
+                    <button type='submit' className='uppercase mt-2 w-full h-[50px] font-style font-medium text-white' style={{backgroundColor: 'rgb(233, 28, 35)'}}><Link to='/login'>Login</Link></button>
+                </div>
             </div>
         </div>
     )
