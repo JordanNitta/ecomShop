@@ -14,7 +14,7 @@ const Register = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
     return (
-        <div className='flex justify-center items-center md:pt-20'>
+        <div className='flex justify-center items-center lg:pt-20'>
             <Form 
                 showPassword={showPassword} 
                 handlePassword={handlePassword}

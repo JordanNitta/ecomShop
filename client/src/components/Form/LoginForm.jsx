@@ -11,7 +11,7 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
     return (
-        <div className='w-full p-[30px] md:w-[513px] bg-white mx-auto'>
+        <div className='w-full p-[30px] lg:w-[513px] bg-white mx-auto'>
             <h2 className='text-black font-style border-b-[1px] border-grey-500 pb-2 text-[14px] font-semibold'>Login</h2>
             <div className='pt-4'>
                 <form>

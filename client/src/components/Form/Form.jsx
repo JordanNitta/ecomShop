@@ -49,7 +49,7 @@ const Form = ({showPassword, handlePassword, showConfirmPassword, handleConfirm}
     }
 
     return (
-        <div className='w-full p-[30px] md:w-[513px] bg-white'>
+        <div className='w-full p-[30px] lg:w-[513px] bg-white'>
             <h2 className='text-black font-style border-b-[1px] border-grey-500 pb-2 text-[14px] font-semibold'>Create An Account</h2>
             <div className='pt-4'>
                 <form onSubmit={handleRegistration}>
