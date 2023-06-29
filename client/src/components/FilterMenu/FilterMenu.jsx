@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-const FilterMenu = ( {products} ) => {
+const FilterMenu = () => {
     const [closeMenu, setCloseMenu] = useState(false)
     const handleCloseMenu = () => {
         setCloseMenu(!closeMenu)

@@ -5,9 +5,7 @@ import Login from './pages/Login';
 import Footer from './pages/Footer';
 import Sneaker from './pages/Sneaker';
 import OneProduct from './pages/OneProduct';
-
 function App() {
-
   return (
     <>
         <Navbar />

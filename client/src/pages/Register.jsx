@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import Form from '../components/Form/Form'
+
 const Register = () => {
+    
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
