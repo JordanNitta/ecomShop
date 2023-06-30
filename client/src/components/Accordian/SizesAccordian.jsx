@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 const SizesAccordian = ({ products, }) => {
+    const [open, setOpen] = useState(false)
+    const [selectedSize, setSelectedSize] = useState(false)
     const sizes = [
         2, 2.5, 3, 3.5, 4, 4.5, 5,
         5.5, 6, 6.5, 7, 7.5, 8, 8.5,
@@ -9,8 +11,11 @@ const SizesAccordian = ({ products, }) => {
         15, 15.5, 16, 16.5, 17, 17.5,
         18, 18.5, 19, 19.5, 20
     ]
-    const [open, setOpen] = useState(false)
 
+
+    const handleSelctedSize = (size) => {
+        setSelectedSize(size)
+    }
     const handleOpen = () => {
         setOpen(!open)
     }
@@ -28,7 +33,7 @@ const SizesAccordian = ({ products, }) => {
                 <div className='p-3 grid grid-cols-5 gap-[5px]' id='filter-boxes'>
                     {sizes.map((size, idx) => (
                         <div key={idx} className=''>
-                            <button htmlFor="model" className='font-style text-[14px] text-mainColor  flex justify-center items-center text-light border-[1px] border-gray-200 p-3 w-[40px] h-[40px]'>{size}</button>
+                            <button htmlFor="model" onClick={handleSelctedSize} className={selectedSize === size ? 'font-style text-[14px] text-mainColor  flex justify-center items-center text-light border-[1px] border-gray-200 p-3 w-[40px] h-[40px]' : 'font-style text-[14px] text-mainColor  flex justify-center items-center text-light border-[1px] border-gray-500 p-3 w-[40px] h-[40px]'} >{size}</button>
                         </div>
                     ))}
                 </div>

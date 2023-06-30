@@ -12,6 +12,7 @@ import BrandAccordian from '../components/Accordian/BrandAccordian';
 import SizesAccordian from '../components/Accordian/SizesAccordian';
 const Sneaker = () => {
     const [modelArray, setModelArray] = useState([])
+    const [filterSizes, setFilterSizes] = useState([])
     const [filterPopup, setFilterPopup] = useState(false)
     const [products, setProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0);
@@ -43,6 +44,11 @@ const Sneaker = () => {
         }
     }
 
+    const handleFilterSizes = (size) => {
+        if(filterSizes.includes(size)){
+            setFilterSizes(filterSizes.filter((removeSize) => size !== removeSize))
+        }
+    }
     const handleFilterPopup = () => {
         setFilterPopup(!filterPopup)
         
