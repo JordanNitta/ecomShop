@@ -4,7 +4,7 @@ const BrandAccordian = ({ products }) => {
     const [selectedModel, setSelectedModel] = useState(false)
     const [filterProducts, setFilterProducts] = useState([...products])
     // State hook for each brand checkbox
-    console.log(products, 'hi')
+    // console.log(products, 'hi')
 
     const brands = ['nike', 'adidas']
 
@@ -26,7 +26,7 @@ const BrandAccordian = ({ products }) => {
     }
     return (
         <>
-            <div className='w-full bg-white' id="filter-boxes" onClick={handleOpen}>
+            <div className='w-full bg-white mt-5' id="filter-boxes" onClick={handleOpen}>
                 <div className='flex justify-between p-3'>
                     <h1 className='text-mainColor text-[14px] font-medium uppercase'>Brand</h1>
                     <span>
