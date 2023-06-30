@@ -5,6 +5,10 @@ const getProducts = async (req, res) => {
     res.json(products);
 }
 
+// const filterProducts = async(req, res) => {
+    
+// }
+
 const getProductById = async (req, res) => {
     const product = await Product.findById(req.params.id)
     if (product) {

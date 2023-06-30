@@ -21,6 +21,9 @@ module.exports = {
         'extra-bold': '800',
         black: '900',
       },
+      textColor : {
+        mainColor: '#333',
+      }
     },
   },
   plugins: [],

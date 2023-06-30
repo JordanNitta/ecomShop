@@ -42,7 +42,27 @@ const products = [
             9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15,],
         price: 140,
         color: 'white/black/white'
-    }
+    },
+    {
+        name: "Yeezy Slides Onyx",
+        brand: 'Adidas',
+        model: 'Dunks',
+        image: 'https://cdn.flightclub.com/3000/TEMPLATE/296154/1.jpg',
+        description: "The Dunk Low 'Black White' also known as 'Panda' brings a classic two-tone look to its classic basketball construction. The shoe's low-top build emerges in leather, with a white base contrasted by black overlays, with further black on the Swoosh branding. Perforations on the toe box provide breathability, while underfoot, the two-tone look is matched by the tooling, which incorporates a concentric rubber outsole for traction.",
+        size: [3, 4, 5, 6, 7, 8, 9, 10, 10.5, 11, 12, 13, 14, 14.5, 15, 16],
+        price: 150,
+        color: 'onyx/onyx/onyx'
+    },
+    {
+        name: "Yeezy ",
+        brand: 'Adidas',
+        model: 'Dunks',
+        image: 'https://cdn.flightclub.com/3000/TEMPLATE/296154/1.jpg',
+        description: "The Dunk Low 'Black White' also known as 'Panda' brings a classic two-tone look to its classic basketball construction. The shoe's low-top build emerges in leather, with a white base contrasted by black overlays, with further black on the Swoosh branding. Perforations on the toe box provide breathability, while underfoot, the two-tone look is matched by the tooling, which incorporates a concentric rubber outsole for traction.",
+        size: [3, 4, 5, 6, 7, 8, 9, 10, 10.5, 11, 12, 13, 14, 14.5, 15, 16],
+        price: 150,
+        color: 'onyx/onyx/onyx'
+    },
 ]
 
 module.exports = products;

@@ -30,7 +30,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
             .then((res) => {
                 console.log(registerUser)
                 localStorage.setItem('user', JSON.stringify(res.data.user))
-                console.log(localStorage)
+                console.log(localStorage.user)
                 localStorage.setItem('token', JSON.stringify(res.data.token))
                 navigate('/')
             })
@@ -91,7 +91,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
                         </div>
 
                         <div className='flex justify-end items-center'>
-                            <input type={showPassword ? 'text' : 'password'} name="password" ref={passwordRef} className={`border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium ${error?.email ? 'border-red-500 w-full' : '' }`}/>
+                            <input type={showPassword ? 'text' : 'password'} name="password" ref={passwordRef} className={`border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium ${error?.email ? 'border-red-500 w-full' : 'w-full' }`}/>
                             <button onClick={handlePassword} className='absolute'>
                                 {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>
@@ -107,7 +107,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
                             }
                         </div>
                         <div className='flex justify-end items-center'>
-                            <input type={showConfirmPassword ? 'text' : 'password'} name="" ref={confirmPasswordRef} className={`border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium ${error?.email ? 'border-red-500 w-full' : '' }`}/>
+                            <input type={showConfirmPassword ? 'text' : 'password'} name="" ref={confirmPasswordRef} className={`border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium ${error?.email ? 'border-red-500 w-full' : 'w-full' }`}/>
                             <button onClick={handleConfirm} className='absolute'>
                                 {showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                             </button>

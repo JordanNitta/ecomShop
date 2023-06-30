@@ -12,4 +12,8 @@
   h1,h2,h3,h4,h4,p{
     @apply font-style;
   }
+  #filter-boxes{
+    border: 1px solid rgb(231, 231, 231);
+    background-color: #fff;
+  }
 }
