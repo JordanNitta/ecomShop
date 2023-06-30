@@ -9,8 +9,9 @@ import FilterButton from '../components/Button/FilterButton';
 import FilterMenu from '../components/FilterMenu/FilterMenu';
 import ModelAccordian from '../components/Accordian/ModelAccordian';
 import BrandAccordian from '../components/Accordian/BrandAccordian';
+import SizesAccordian from '../components/Accordian/SizesAccordian';
 const Sneaker = () => {
-    const [filterByModel, setFilterByModel] = useState([])
+    const [modelArray, setModelArray] = useState([])
     const [filterPopup, setFilterPopup] = useState(false)
     const [products, setProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0);
@@ -23,20 +24,28 @@ const Sneaker = () => {
             setTotalProducts(response.data.length)
         };
         fetchProducts()
-    }, []);
+    }, [setTotalProducts]);
 
+    useEffect(() => {
+        setTotalProducts(modelArray.length)
+    },[modelArray])
+
+    // Takes a param called model
     const handleFilterByModel = (model) => {
-        if(filterByModel.includes(model)) {
-            setFilterByModel(filterByModel.filter((removeModel) => model !== removeModel))
+        // Checks to see if filterByModel array includes a selected model
+        if(modelArray.includes(model)) {
+            // If the selected model is already in the filterByModel 
+            // array it removes if from the model array
+            setModelArray(modelArray.filter((removeModel) => model !== removeModel))
         } else{ 
-            setFilterByModel([...filterByModel, model])
-            setTotalProducts(filterByModel)
+            // If the selected model isn't in the array it add the model to the array
+            setModelArray([...modelArray, model])
         }
     }
 
     const handleFilterPopup = () => {
         setFilterPopup(!filterPopup)
-        console.log('hi')
+        
     }
     return (
         <>
@@ -47,12 +56,13 @@ const Sneaker = () => {
                 </div>
             </Header>
             <div className='w-full flex lg:px-[160px] gap-[30px]'>
-                <div className='flex flex-col lg:w-[30%]'>
+                <div className='flex flex-col lg:w-[30%] '>
                     <h3>Filter</h3>
                     {/* <FilterButton openMenu={handleFilterPopup}/>  */}
                     {filterPopup ? <FilterMenu products={products} /> : ''}
                     <ModelAccordian products={products} handleFilterByModel={handleFilterByModel}/>
                     <BrandAccordian products={products}/>
+                    <SizesAccordian products={products}/>
                 </div>
                 <div className="w-full">
                     <div className='flex justify-between'>
@@ -60,9 +70,8 @@ const Sneaker = () => {
                         <h1 className="hidden lg:block lg:uppercase lg:text-[14px] lg:font-bold">Sort By Relevance</h1>
                     </div>
                     <div className='mt-5 md:w-full'>
-                        <Card products={filterByModel.length ? products.filter((product) => 
-                            filterByModel.some((model) => model === product.model) 
-                        ) : products} id={id}/>
+                        <Card products={modelArray.length ? products.filter((product) => modelArray.includes(product.model)) : products}
+                        id={id}/>
                     </div>
                 </div>
             </div>
