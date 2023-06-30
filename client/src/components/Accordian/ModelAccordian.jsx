@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 const ModelAccordian = ({ products, handleFilterByModel }) => {
+    // Need a state for the selected values
     const [selectedModels, setSelectedModels] = useState([])
     
     const handleSelectedModel = (e, idx) => {
-        const copy = [...selectedModels]
-        copy[idx] = e.target.checked
-        setSelectedModels(copy)
+        const modelsCopy = [...selectedModels]
+        modelsCopy[idx] = e.target.checked
+        setSelectedModels(modelsCopy)
         handleFilterByModel(products[idx].model)
+        console.log('Selected Models:', selectedModels);
     }
 
     const [open, setOpen] = useState(false)
@@ -17,7 +19,7 @@ const ModelAccordian = ({ products, handleFilterByModel }) => {
     }
     return (
         <>
-            <div className='w-full bg-white' id="filter-boxes" onClick={handleOpen}>
+            <div className='w-full bg-white mt-5' id="filter-boxes" onClick={handleOpen}>
                 <div className='flex justify-between p-3'>
                     <h1 className='text-mainColor text-[14px] font-medium uppercase'>Model</h1>
                     <span>
