@@ -49,10 +49,12 @@ const Sneaker = () => {
             setFilterSizes(filterSizes.filter((removeSize) => size !== removeSize))
         }
     }
+
     const handleFilterPopup = () => {
         setFilterPopup(!filterPopup)
         
     }
+    
     return (
         <>
             <Header>

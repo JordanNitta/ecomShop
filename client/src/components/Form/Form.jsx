@@ -131,3 +131,4 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
 }
 
 export default Form
+
