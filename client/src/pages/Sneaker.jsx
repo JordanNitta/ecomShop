@@ -47,6 +47,8 @@ const Sneaker = () => {
     const handleFilterSizes = (size) => {
         if(filterSizes.includes(size)){
             setFilterSizes(filterSizes.filter((removeSize) => size !== removeSize))
+        } else {
+            setFilterSizes([...filterSizes, size])
         }
     }
 
@@ -70,7 +72,7 @@ const Sneaker = () => {
                     {filterPopup ? <FilterMenu products={products} /> : ''}
                     <ModelAccordian products={products} handleFilterByModel={handleFilterByModel}/>
                     <BrandAccordian products={products}/>
-                    <SizesAccordian products={products}/>
+                    <SizesAccordian products={products} handleFilterSizes={handleFilterSizes}/>
                 </div>
                 <div className="w-full">
                     <div className='flex justify-between'>
