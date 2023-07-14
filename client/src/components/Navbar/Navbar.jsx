@@ -23,7 +23,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='h-[76px] bg-white flex justify-between px-4'>
+            <div className='h-[76px] flex justify-between px-4 fixed z-50'>
                 <div className='flex items-center justify-between '>
                     <Searchbar />
                     <Link to='/'>

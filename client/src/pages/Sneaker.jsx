@@ -13,6 +13,7 @@ import SizesAccordian from '../components/Accordian/SizesAccordian';
 const Sneaker = () => {
     const [modelArray, setModelArray] = useState([])
     const [filterSizes, setFilterSizes] = useState([])
+    const [filterBrand, setFilterBrand] = useState([])
     const [filterPopup, setFilterPopup] = useState(false)
     const [products, setProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0);
@@ -52,9 +53,16 @@ const Sneaker = () => {
         }
     }
 
+    const handleFilterBrand = (brand) => {
+        if(filterBrand.includes(brand)){
+            setFilterBrand(filterBrand.filter((removeBrand) => brand !== removeBrand))
+        } else {
+            setFilterBrand([...filterBrand, brand])
+        }
+    }
+
     const handleFilterPopup = () => {
         setFilterPopup(!filterPopup)
-        
     }
     
     return (
@@ -71,7 +79,7 @@ const Sneaker = () => {
                     {/* <FilterButton openMenu={handleFilterPopup}/>  */}
                     {filterPopup ? <FilterMenu products={products} /> : ''}
                     <ModelAccordian products={products} handleFilterByModel={handleFilterByModel}/>
-                    <BrandAccordian products={products}/>
+                    <BrandAccordian products={products} handleFilterBrand={handleFilterBrand}/>
                     <SizesAccordian products={products} handleFilterSizes={handleFilterSizes}/>
                 </div>
                 <div className="w-full">
@@ -80,8 +88,14 @@ const Sneaker = () => {
                         <h1 className="hidden lg:block lg:uppercase lg:text-[14px] lg:font-bold">Sort By Relevance</h1>
                     </div>
                     <div className='mt-5 md:w-full'>
-                        <Card products={modelArray.length ? products.filter((product) => modelArray.includes(product.model)) : products}
+                        <Card products={modelArray.length || filterSizes.length || filterBrand.length ? 
+                        products
+                        .filter((product) => !filterBrand.length || filterBrand.includes(product.brand))
+                        .filter((product) => !filterSizes.length || filterSizes.some(size => product.size.includes(size)))
+                        .filter((product) => !modelArray.length || modelArray.includes(product.model))
+                        : products}
                         id={id}/>
+                        
                     </div>
                 </div>
             </div>

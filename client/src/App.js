@@ -5,11 +5,13 @@ import Login from './pages/Login';
 import Footer from './pages/Footer';
 import Sneaker from './pages/Sneaker';
 import OneProduct from './pages/OneProduct';
+import HomePage from './pages/HomePage';
 function App() {
   return (
     <>
         <Navbar />
         <Routes>
+          <Route path='/' element={<HomePage/>}/>
           <Route path='/register' element={<Register />}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/sneakers' element={<Sneaker />}/>

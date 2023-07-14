@@ -1,29 +1,23 @@
 import { useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
-const BrandAccordian = ({ products }) => {
-    const [selectedModel, setSelectedModel] = useState(false)
-    const [filterProducts, setFilterProducts] = useState([...products])
-    // State hook for each brand checkbox
-    // console.log(products, 'hi')
+const BrandAccordian = ({ products, handleFilterBrand }) => {
+    const [selectedBrand, setSelectedBrand] = useState([])
+    const [open, setOpen] = useState(false)
 
-    const brands = ['nike', 'adidas']
+    const brands = ['Nike', 'Adidas']
 
-    const handleFilterProducts = (e) => {
-        // console.log(e.target.checked, e.target.value)
-        // Set 
-        if(e.target.checked){
-            setFilterProducts(filterProducts.filter(product => {
-                return product.brand === e.target.value
-            }))
-        } else{
-            setFilterProducts([...products])
-        }
+    const handleSelectedBrand = (e, idx) => {
+        const brandCopy = [...selectedBrand]
+        brandCopy[idx] = e.target.checked
+        setSelectedBrand(brandCopy)
+        handleFilterBrand(brands[idx])
     }
 
-    const [open, setOpen] = useState(false)
+    
     const handleOpen = () => {
         setOpen(!open)
     }
+
     return (
         <>
             <div className='w-full bg-white mt-5' id="filter-boxes" onClick={handleOpen}>
@@ -37,13 +31,9 @@ const BrandAccordian = ({ products }) => {
             {open ? (
                 <div className='p-3' id='filter-boxes'>
                     {brands.map((brand, idx) => (
-                        <div key={idx} >
-                            <input 
-                                type="checkbox" 
-                                onChange={(e) => {handleFilterProducts(e)}}
-                                value={'brand'}
-                            />
-                            <label htmlFor="model" className='ml-3 text-[12px] text-mainColor'>{brand}</label>
+                        <div key={idx}>
+                            <input type="checkbox" checked={selectedBrand[idx]} onChange={(e) => handleSelectedBrand(e, idx)}/>
+                            <label htmlFor="brand" className='ml-3 text-[12px] text-mainColor'>{brand}</label>
                         </div>
                     ))}
                 </div>
