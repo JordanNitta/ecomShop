@@ -20,21 +20,23 @@ const HomePage = () => {
                     <a href="" className='ml-10 mt-5'>Shop Now</a>
                 </div>
             </div>
-            <div className='pt-[80px] pl-[100px] pr-[100px]'>
+            <div className='p-5 lg:pt-[80px] lg:pl-[100px] lg:pr-[100px] md:p-5'>
                 <div>
                     <h1 className='font-bold text-mainColor text-[30px]'>Nike Dunks</h1>
-                    <div className='grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-5 lg:grid-cols-3'>
+                    <div className='grid grid-cols-2 gap-2 md:grid-cols-3  md:gap-5 lg:grid-cols-4 mt-8'>
                         {products.map((product) => {
-                            const { _id, name, image, price, brand } = product;
+                            const { _id, name, image, brand, model } = product;
+                            if (model !== "Dunks") {
+                                return null; 
+                            }
                             return (
-                                <Link key={_id} to={`/products/${_id}`} className='pointer  bg-white '>
-                                    <div href="#" className='p-5'>
-                                        <img className="rounded-md" src={image} />
+                                <Link key={_id} to={`/products/${_id}`} className='pointer bg-white'>
+                                    <div href="#" className='p-4'>
+                                        <img className="rounded-md" src={image} alt={name} />
                                     </div>
                                     <div className="p-5">
-                                        <h5 className="mb-2 text-[14px] font-semibold text-gray-500">{brand.dunk}</h5>
+                                        <h5 className="mb-2 text-[14px] font-semibold text-gray-500">{brand}</h5>
                                         <h5 className="mb-2 text-[14px] font-semibold text-black">{name}</h5>
-                                        <h5 className="text-[14px] font-bold text-black">${price}</h5>
                                     </div>
                                 </Link>
                             );
