@@ -43,6 +43,28 @@ const HomePage = () => {
                         })}
                     </div>
                 </div>
+                <div>
+                    <h1 className='font-bold text-mainColor text-[30px] mt-10'>New Balance 550</h1>
+                    <div className='grid grid-cols-2 gap-2 md:grid-cols-3  md:gap-5 lg:grid-cols-4 mt-8'>
+                        {products.map((product) => {
+                            const { _id, name, image, brand, model } = product;
+                            if (model !== "550") {
+                                return null; 
+                            }
+                            return (
+                                <Link key={_id} to={`/products/${_id}`} className='pointer bg-white'>
+                                    <div href="#" className='p-4'>
+                                        <img className="rounded-md" src={image} alt={name} />
+                                    </div>
+                                    <div className="p-5">
+                                        <h5 className="mb-2 text-[14px] font-semibold text-gray-500">{brand}</h5>
+                                        <h5 className="mb-2 text-[14px] font-semibold text-black">{name}</h5>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
     )
