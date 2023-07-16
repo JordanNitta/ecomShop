@@ -13,4 +13,4 @@ const getApparelById = async (req, res) => {
         res.status(404)
     }
 }
-module.exports = {pass}
+module.exports = { getApparel, getApparelById }

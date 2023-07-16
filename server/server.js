@@ -14,5 +14,7 @@ const UserRoutes = require("./routes/user.routes")
 UserRoutes(app);
 const ProductRoutes = require('./routes/products.routes')
 ProductRoutes(app)
+const ApparelRoutes = require('./routes/apparel.routes')
+ApparelRoutes(app)
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
