@@ -44,7 +44,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div>
-                    <h1 className='font-bold text-mainColor text-[30px] mt-10'>New Balance 550</h1>
+                    <h1 className='font-bold text-mainColor text-[30px] mt-20'>New Balance 550</h1>
                     <div className='grid grid-cols-2 gap-2 md:grid-cols-3  md:gap-5 lg:grid-cols-4 mt-8'>
                         {products.map((product) => {
                             const { _id, name, image, brand, model } = product;
