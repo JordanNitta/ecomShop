@@ -18,7 +18,8 @@ const registerUser = async(req, res) => {
         // Generating a token for specific user
         const token = generateToken(user._id)
         // If request is succeful 
-        res.status(201).cookie( "token", token, JWT_SECRET, { httpOnly: true }).json({
+        console.log(user)
+        res.cookie( "token", token, JWT_SECRET, { httpOnly: true }).status(201).json({
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
@@ -31,20 +32,33 @@ const registerUser = async(req, res) => {
     }
 }
 
-const login = async(req, res) => {
+const loginUser = async(req, res) => {
     // Need to find a user from database who info match the form from the email
     try{
         const { email, password } = req.body;
-        const user = await User.findOne({email: req.body.email})
+        const user = await User.findOne({ email })
 
         if(!user) {
             console.log('Email incorrect')
             // Bad request 
             return res.status(400).json(error)
         }
-    }
-    catch{
 
+        const passwordIsCorrect = await bcrypt.compare(password, user.password)
+        
+        if(!passwordIsCorrect) {
+            return res.status(400).json(error)
+        }
+        
+        const userToken = generateToken(user._id)
+        res.status(201).cookie( "token", userToken, JWT_SECRET, { httpOnly: true }).json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            _id: user._id
+        })
+    }
+    catch(err){
+        res.status(400).json(err)
     }
 }   
 
@@ -72,4 +86,8 @@ const handleGetLoggedUser = async (req, res) => {
     });
 }
 
-module.exports = { registerUser, handleGetAllUsers, handleGetLoggedUser }
+const logOut = (req, res) => {
+    res.clearCookie('token').sendStatus(200)
+}
+
+module.exports = { registerUser, loginUser, handleGetAllUsers, handleGetLoggedUser, logOut }

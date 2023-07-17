@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Wrapper/Header';
 import Accordian from '../components/Accordian/Accordian';
@@ -17,7 +17,8 @@ const Sneaker = () => {
     const [filterPopup, setFilterPopup] = useState(false)
     const [products, setProducts] = useState([])
     const [totalProducts, setTotalProducts] = useState(0);
-    const { id } = useParams
+    const [searchParams, setSearchParams] = useSearchParams()
+    
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -88,13 +89,14 @@ const Sneaker = () => {
                         <h1 className="hidden lg:block lg:uppercase lg:text-[14px] lg:font-bold">Sort By Relevance</h1>
                     </div>
                     <div className='mt-5 md:w-full'>
-                        <Card products={modelArray.length || filterSizes.length || filterBrand.length ? 
+                        <Card products={modelArray.length || filterSizes.length || filterBrand.length || searchParams.getAll('products').length ? 
                         products
+                        .filter((product) => !searchParams.getAll('products').length || searchParams.getAll('products').includes(product._id))
                         .filter((product) => !filterBrand.length || filterBrand.includes(product.brand))
                         .filter((product) => !filterSizes.length || filterSizes.some(size => product.size.includes(size)))
                         .filter((product) => !modelArray.length || modelArray.includes(product.model))
                         : products}
-                        id={id}/>
+                        />
                         
                     </div>
                 </div>

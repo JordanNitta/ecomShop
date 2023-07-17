@@ -28,7 +28,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
             confirmPassword: confirmPasswordRef.current.value //current.value is used to acces current value
         }
         // console.log(registerUser)
-        axios.post('http://localhost:8000/api/user/create', registerUser, {withCredentials: true})
+        axios.post('http://localhost:8000/api/user/create', registerUser, { withCredentials: true })
             .then((res) => {
                 setLoggedUser(res.data)
                 console.log(res.data)
@@ -82,7 +82,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
                     </div>
                     <div className='flex flex-col mt-2'>
                         <div className='flex justify-between'>
-                            <label htmlFor="password" className='text-[12px] font-style font-medium'>password</label>
+                            <label htmlFor="password" className='text-[12px] font-style font-medium'>Password</label>
                             {
                                 error?.password && (
                                     <p className='text-[12px] font-style font-medium' style={{ color: 'rgb(233, 28, 35)' }}>{error.password?.message}</p>

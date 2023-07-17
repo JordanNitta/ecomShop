@@ -1,21 +1,42 @@
 import React, { useContext } from 'react'
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import UserContext from '../../context/UserContext';
+import axios from 'axios';
 const Login = () => {
+    const navigate = useNavigate()
     const emailRef = useRef(null)
     const passwordRef = useRef(null) // setting them to empy by default
     const [showPassword, setShowPassword] = useState(false);
-    
+    const [error, setError] = useState({})
+    const {setLoggedUser} = useContext(UserContext)
+
     const handlePasswordToggle = (e) => {
         e.preventDefault()
         setShowPassword(!showPassword);
     };
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        const loginUser = {
+            password: passwordRef.current.value,
+            email: emailRef.current.value
+        }
+        axios.post("http://localhost:8000/api/user/login", loginUser, { withCredentials: true})
+            .then((res) => {
+                setLoggedUser(res.data)
+                navigate('/')
+            })
+            .catch((err) => {
+                setError(err.response.data.error)
+            })
+    }
     return (
         <div className='w-full p-[30px] lg:w-[513px] bg-white mx-auto'>
             <h2 className='text-black font-style border-b-[1px] border-grey-500 pb-2 text-[14px] font-semibold'>Login</h2>
             <div className='pt-4'>
-                <form>
+                <form onSubmit={handleLogin}>
                     <div className='flex flex-col mt-2'>
                         <label htmlFor="email" className='text-[12px] font-style font-medium'>Email</label>
                         <input type="text" name="email" ref={emailRef} className='border-[1px] h-[40px] px-2 mt-2 text-[12px] font-medium' />

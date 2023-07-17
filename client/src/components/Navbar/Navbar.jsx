@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 import Logo from '../../assets/Img/Logo.png'
 import Searchbar from './Searchbar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import UserContext from '../../context/UserContext'
 const Navbar = () => {
+    const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [scrollBg, setScrollBg] = useState(false)
+    
     const { loggedUser, setLoggedUser } = useContext(UserContext)
     const navLinks = [
         { title: 'Sneakers', URL: '/sneakers' },
@@ -20,10 +22,24 @@ const Navbar = () => {
         setShowMenu(!showMenu)
     }
 
+    const handleLoggedOut = () => {
+        axios.delete("http://localhost:8000/api/logOut", { withCredentials: true })
+            .then(() => {
+                setLoggedUser(undefined)
+                navigate('/')
+            })
+            .catch((err) => {
+                console.log(err, "Can't log out")
+            })
+    } 
+
     useEffect(() => {
         axios.get("http://localhost:8000/api/logged/user", { withCredentials: true })
         .then((res) => {
             setLoggedUser(res.data)
+        })
+        .catch(() => {
+
         })
         const handleScroll = () => {
             const scroll = window.scrollY > 800
@@ -58,6 +74,8 @@ const Navbar = () => {
                     </div>
                     <h6 className='text-black'>{loggedUser?.firstName}</h6>
                 </div>
+                <button onClick={handleLoggedOut}>LogOut</button>
+
                 <div onClick={handleMenu} className='lg:hidden my-auto'>
                     {showMenu ? <AiOutlineMenu size={30} className='cursor-pointer text-main ml-1 lg:hidden' /> : <AiOutlineClose size={30} className='cursor-pointer text-main ml-1 lg:hidden' />}
                 </div>
