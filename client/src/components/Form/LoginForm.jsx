@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -6,6 +6,7 @@ const Login = () => {
     const emailRef = useRef(null)
     const passwordRef = useRef(null) // setting them to empy by default
     const [showPassword, setShowPassword] = useState(false);
+    
     const handlePasswordToggle = (e) => {
         e.preventDefault()
         setShowPassword(!showPassword);

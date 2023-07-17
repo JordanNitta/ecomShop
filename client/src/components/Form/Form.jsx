@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import UserContext from '../../context/UserContext'
 const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm }) => {
 
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
     const passwordRef = useRef(null) // setting them to empy by default
     const confirmPasswordRef = useRef(null) // setting them to empy by default
     const [error, setError] = useState({})
+    const {setLoggedUser} = useContext(UserContext)
 
     const handleRegistration = (e) => {
         e.preventDefault()
@@ -26,12 +28,10 @@ const Form = ({ showPassword, showConfirmPassword, handlePassword, handleConfirm
             confirmPassword: confirmPasswordRef.current.value //current.value is used to acces current value
         }
         // console.log(registerUser)
-        axios.post('http://localhost:8000/api/user/create', registerUser)
+        axios.post('http://localhost:8000/api/user/create', registerUser, {withCredentials: true})
             .then((res) => {
-                console.log(registerUser)
-                localStorage.setItem('user', JSON.stringify(res.data.user))
-                console.log(localStorage.user)
-                localStorage.setItem('token', JSON.stringify(res.data.token))
+                setLoggedUser(res.data)
+                console.log(res.data)
                 navigate('/')
             })
             .catch(err => {

@@ -6,9 +6,11 @@ import Footer from './pages/Footer';
 import Sneaker from './pages/Sneaker';
 import OneProduct from './pages/OneProduct';
 import HomePage from './pages/HomePage';
+import { UserProvider } from './context/UserContext';
 function App() {
   return (
     <>
+    <UserProvider>
         <Navbar />
         <Routes>
           <Route path='/' element={<HomePage/>}/>
@@ -18,6 +20,7 @@ function App() {
           <Route path='products/:id' element={<OneProduct />} />
         </Routes>
         <Footer />
+    </UserProvider>
     </>
   );
 }
