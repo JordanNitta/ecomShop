@@ -23,6 +23,7 @@ module.exports = {
       },
       textColor : {
         mainColor: '#333',
+        grey: 'rgb(143, 143, 143)',
       }
     },
   },

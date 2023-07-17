@@ -23,7 +23,7 @@ const HomePage = () => {
         fetchApparel()
     }, [])
     return (
-        <div className='h-screen w-full'>
+        <div className=''>
             <div className="top-0 left-0 w-full h-screen z-10 flex justify-start items-center bg-no-repeat bg-cover sm:bg-center" style={{ backgroundImage: "url('https://cms-cdn.flightclub.com/3000/88afb62ea351-e62b-ee11-32c1-0c8e687d.jpg')" }}>
                 <div className='flex flex-col'>
                     <h1 className='lg:text-[50px] text-white font-bold ml-10'>AIR FOAMPOSITE ONE <br></br>'METALLIC RED' 2023</h1>
