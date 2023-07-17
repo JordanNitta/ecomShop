@@ -6,7 +6,7 @@ require('dotenv').config();
 const port = process.env.API_PORT;
 require("./config/mongoose.config");
 
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 app.use(express.json(), cookies(), express.urlencoded({ extended: true }));
 // Route section

@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+
 // The key that hashing algo uses to put the header and payload together in the signature
 const JWT_SECRET  = process.env.JWT_SECRET
 
@@ -14,22 +15,18 @@ const generateToken = (id) => {
 const registerUser = async(req, res) => {
     try {
         const user = await User.create(req.body)
-        console.log(req.body, 'yo there')
-        console.log(user, 'Hi there')
         // Generating a token for specific user
         const token = generateToken(user._id)
         // If request is succeful 
-        res.status(201).json({
-            token,
+        res.status(201).cookie( "token", token, JWT_SECRET, { httpOnly: true }).json({
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            password: user.password,
-            confirmPassword: user.confirmPassword
-            
+            // password: user.password,
+            // confirmPassword: user.confirmPassword
         })
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(400).json(error)
     }
 }
@@ -61,4 +58,18 @@ const handleGetAllUsers = async (req, res) => {
         })
 }
 
-module.exports = { registerUser, handleGetAllUsers}
+const handleGetLoggedUser = async (req, res) => {
+    // console.log(req.cookies)
+    jwt.verify(req.cookies.token, JWT_SECRET, (err, payload) => {
+        if(err){
+            res.status(401).json({verified: false});
+        } else {
+            User.findById({_id : payload.id})
+            .then((user) => {
+                res.json(user)
+            })
+        }
+    });
+}
+
+module.exports = { registerUser, handleGetAllUsers, handleGetLoggedUser }
