@@ -1,14 +1,22 @@
+
 import { useState } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 const ModelAccordian = ({ products, handleFilterByModel }) => {
     // Need a state for the selected values
     const [selectedModels, setSelectedModels] = useState([])
-    
+    const [allModels] = useState(() => 
+    products.reduce((models, product) => {
+        if (!models.includes(product.model)) {
+            models.push(product.model)
+        }
+        return models
+    }, []))
+
     const handleSelectedModel = (e, idx) => {
         const modelsCopy = [...selectedModels]
         modelsCopy[idx] = e.target.checked
         setSelectedModels(modelsCopy)
-        handleFilterByModel(products[idx].model)
+        handleFilterByModel(allModels[idx])
         console.log('Selected Models:', selectedModels);
     }
 
@@ -17,6 +25,7 @@ const ModelAccordian = ({ products, handleFilterByModel }) => {
     const handleOpen = () => {
         setOpen(!open)
     }
+    
     return (
         <>
             <div className='w-full bg-white mt-5' id="filter-boxes" onClick={handleOpen}>
@@ -29,10 +38,10 @@ const ModelAccordian = ({ products, handleFilterByModel }) => {
             </div>
             {open ? (
                 <div className='p-3' id='filter-boxes'>
-                    {products.map((product, idx) => (
+                    {allModels.map((model, idx) => (
                         <div>
-                            <input type="checkbox" checked={selectedModels[idx]} onChange={(e) => handleSelectedModel(e, idx)}/>
-                            <label htmlFor="model" className='ml-3 text-[12px] text-mainColor'>{product.model}</label>
+                            <input type="checkbox" checked={selectedModels[idx]} onChange={(e) => handleSelectedModel(e, idx)} />
+                            <label htmlFor="model" className='ml-3 text-[12px] text-mainColor'>{model}</label>
                         </div>
                     ))}
                 </div>
