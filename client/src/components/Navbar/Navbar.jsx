@@ -9,7 +9,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
     const [scrollBg, setScrollBg] = useState(false)
-    
+
     const { loggedUser, setLoggedUser } = useContext(UserContext)
     const navLinks = [
         { title: 'Sneakers', URL: '/sneakers' },
@@ -53,7 +53,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className={`h-[76px] flex justify-between px-4 fixed z-50 w-full ${scrollBg ? 'bg-white' : 'bg-transparent'}`}>
+            <div className={`h-[76px] flex justify-between fixed z-50 w-full ${scrollBg ? 'bg-white' : 'bg-transparent'}`}>
                 <div className='flex items-center w-[45%]'>
                     <Searchbar/>
                 </div>
